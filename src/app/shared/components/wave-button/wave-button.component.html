@@ -1,5 +1,10 @@
 <div class="wave-button-container" (click)="handleButtonClick()">
-  <a class="wave-button" [style.background-color]="backgroundColor">
+  <a class="wave-button"
+     tabindex="0"
+     [style.background-color]="backgroundColor"
+     (keyup.enter)="handleButtonClick()"
+     (keyup.space)="handleButtonClick()"
+  >
   <span class="wave-button-text">
     <ng-content></ng-content>
   </span>

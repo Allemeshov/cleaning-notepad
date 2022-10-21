@@ -8,7 +8,9 @@
       <app-input-password [passwordControl]="passwordControl"></app-input-password>
     </form>
 
-    <app-wave-button [clicked]="registerNavigatedSubject">
+    <button class="login-btn" mat-raised-button color="primary">Log in</button>
+
+    <app-wave-button [clicked]="registerNavigatedSubject" [backgroundColor]="'#673ab7'">
       No account?
     </app-wave-button>
 

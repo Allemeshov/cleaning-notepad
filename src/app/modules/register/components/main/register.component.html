@@ -10,7 +10,9 @@
       <app-input-phone [phoneControl]="phoneControl"></app-input-phone>
     </form>
 
-    <app-wave-button [clicked]="loginNavigatedSubject">
+    <button class="register-btn" mat-raised-button color="primary">Register</button>
+
+    <app-wave-button [clicked]="loginNavigatedSubject" [backgroundColor]="'#673ab7'">
       Already have account?
     </app-wave-button>
 

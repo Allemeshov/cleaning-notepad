@@ -8,6 +8,7 @@ import {InputPasswordComponent} from "../../shared/components/input-password/inp
 import {WaveButtonComponent} from "../../shared/components/wave-button/wave-button.component";
 import {InputNameComponent} from "../../shared/components/input-name/input-name.component";
 import {InputPhoneComponent} from "../../shared/components/input-phone/input-phone.component";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {InputPhoneComponent} from "../../shared/components/input-phone/input-pho
     InputPasswordComponent,
     WaveButtonComponent,
     InputNameComponent,
-    InputPhoneComponent
+    InputPhoneComponent,
+    MatButtonModule
   ]
 })
 export class RegisterModule {

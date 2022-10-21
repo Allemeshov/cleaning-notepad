@@ -34,8 +34,6 @@ export class InputPasswordComponent {
   hide = true;
 
   getErrorMessage(): string {
-    console.log(this.passwordControl.errors)
-
     if (this.passwordControl.hasError('required')) {
       return 'You must enter a value';
     }
