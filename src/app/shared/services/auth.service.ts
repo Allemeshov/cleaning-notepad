@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {ApiService} from "./base/api.service";
 import {LoginUserData} from "../interfaces/login-user-data.interface";
 import {RegisterUserDataInterface} from "../interfaces/register-user-data.interface";
+import {Md5} from "ts-md5";
 
 
 @Injectable({
@@ -62,6 +63,9 @@ export class AuthService extends ApiService {
    * and in `localStorage` by key {@link tokenTitleLC}.
    */
   login(data: LoginUserData): Observable<string> {
+
+    data.password = Md5.hashStr(data.password);
+
     return this.httpClient.post<string>(
       this.url('Login'),
       data
@@ -84,6 +88,9 @@ export class AuthService extends ApiService {
    * and in `localStorage` by key {@link idTitleLC}.
    */
   register(data: RegisterUserDataInterface): Observable<string> {
+
+    data.password = Md5.hashStr(data.password);
+
     return this.httpClient.post<string>(
       this.url('Register'),
       data
