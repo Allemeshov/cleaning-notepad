@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Subject} from "rxjs";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../../shared/services/auth.service";
+import {LoginUserData} from "../../../../shared/interfaces/login-user-data.interface";
 
 @Component({
   selector: 'app-login',
@@ -20,9 +22,39 @@ export class LoginComponent {
   registerNavigatedSubject: Subject<void> = new Subject<void>();
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
     this.registerNavigatedSubject.subscribe(() => {
       this.router.navigateByUrl('register').then();
     })
+  }
+
+  logInUser(): void {
+
+    if (this.options.invalid) {
+      alert('Some fields are invalid. Try again.');
+      return;
+    }
+
+    const formValues: LoginUserData = {
+      login: this.options.value.email ?? '',
+      password: this.options.value.password ?? ''
+    };
+    console.log(formValues);
+
+    // TODO: Finish login and register process.
+
+    this.authService.login(formValues).subscribe({
+      next: () => {
+        if (this.authService.isLoggedIn()) {
+          this.router.navigateByUrl('home').then();
+        }
+      },
+      error: err => {
+        alert(err)
+      },
+      complete: () => {
+      }
+    });
   }
 }
