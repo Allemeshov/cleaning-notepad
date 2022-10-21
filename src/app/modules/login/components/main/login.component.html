@@ -1,0 +1,16 @@
+<div class="login-page-container">
+  <div class="content-wrapper">
+    <h1>Welcome to Cleaning Notepad!</h1>
+    <h2>Let's log in</h2>
+
+    <form class="login-form-container" [formGroup]="options">
+      <app-input-email [emailControl]="emailControl"></app-input-email>
+      <app-input-password [passwordControl]="passwordControl"></app-input-password>
+    </form>
+
+    <app-wave-button [clicked]="registerNavigatedSubject">
+      No account?
+    </app-wave-button>
+
+  </div>
+</div>

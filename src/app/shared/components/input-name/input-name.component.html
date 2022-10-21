@@ -1,0 +1,7 @@
+<div class="input-name-container input-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your name</mat-label>
+    <input matInput placeholder="Alexander Lemeshov" [formControl]="nameControl" required>
+    <mat-error *ngIf="nameControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>

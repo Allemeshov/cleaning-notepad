@@ -1,0 +1,148 @@
+@keyframes waves {
+  0% {
+    transform: translate3d(-50%, -96%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -96%, 0) rotate(360deg);
+  }
+}
+
+.wave-button-container {
+  display: flex;
+  width: 80%;
+  @media (max-width: 920px) {
+    width: 100%;
+  }
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.wave-button {
+  max-width: 280px !important;
+  width: 100%;
+  height: 75px;
+  border-radius: 10px;
+  transition: all 0.8s ease 0s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    ::before {
+      display: none;
+    }
+    ::after {
+      display: none;
+    }
+  }
+
+  .wave-button-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      align-items: center;
+
+      .wave-button-waves {
+        top: -50px;
+      }
+
+      .wave-button-text {
+        transform: translate(-50%, -50%);
+        bottom: 25%;
+      }
+    }
+  }
+
+  &:last-child {
+    max-width: 400px;
+
+    .wave-button-waves {
+      width: 400px;
+      height: 400px;
+      top: -5px;
+    }
+
+    ::after, ::before {
+      content: '';
+      top: -30px;
+      position: absolute;
+      left: 50%;
+      width: 350%;
+      height: 350%;
+      transform: translate3d(-50%, -96%, 0) rotate(0deg);
+    }
+
+    ::after {
+      border-radius: 46%;
+      animation: waves 12s infinite linear;
+    }
+
+    ::before {
+      border-radius: 47%;
+      animation: waves 9s infinite linear;
+    }
+
+    &:hover {
+      .wave-button-waves {
+        top: -100px;
+      }
+    }
+  }
+
+  &-text {
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+
+  &-waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 280px;
+    background-color: rgb(56, 56, 56);
+    transition: all 0.4s ease 0s;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+
+    &::after, &::before {
+      content: '';
+      top: 0;
+      position: absolute;
+      left: 50%;
+      width: 250%;
+      height: 250%;
+      transform: translate3d(-50%, -96%, 0) rotate(0deg);
+    }
+
+    &::after {
+      background: rgba(255, 255, 255, 0.508);
+      border-radius: 44%;
+      animation: waves 10s infinite linear;
+
+    }
+
+    &::before {
+      background: rgb(255, 255, 255);
+      border-radius: 48%;
+      animation: waves 5s infinite linear;
+    }
+  }
+
+  &:not(:last-child) {
+    margin: 0 0 20px 0;
+  }
+}

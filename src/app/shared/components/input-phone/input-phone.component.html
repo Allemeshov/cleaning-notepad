@@ -1,0 +1,7 @@
+<div class="input-phone-container input-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your phone</mat-label>
+    <input matInput placeholder="+49 151 7953677" [formControl]="phoneControl" required>
+    <mat-error *ngIf="phoneControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
