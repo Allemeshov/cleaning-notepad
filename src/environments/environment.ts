@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://birdegop.ru/api'
+  apiUrl: 'https:localhost:7045'
+  // apiUrl: 'https://birdegop.ru/api'
 };
 
 /*

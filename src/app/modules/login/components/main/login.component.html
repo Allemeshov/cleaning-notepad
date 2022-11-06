@@ -11,6 +11,7 @@
     <button class="login-btn"
             mat-raised-button
             color="primary"
+            [disabled]="options.invalid"
             (click)="logInUser()"
     >
       Log in

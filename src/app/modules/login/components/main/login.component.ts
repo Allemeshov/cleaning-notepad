@@ -4,6 +4,7 @@ import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../shared/services/auth.service";
 import {LoginUserData} from "../../../../shared/interfaces/login-user-data.interface";
+import {SnackBarService} from "../../../../shared/services/snack-bar.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private snackBarService: SnackBarService) {
     this.registerNavigatedSubject.subscribe(() => {
       this.router.navigateByUrl('register').then();
     })
@@ -40,14 +42,23 @@ export class LoginComponent {
       login: this.options.value.email ?? '',
       password: this.options.value.password ?? ''
     };
-    console.log(formValues);
-
-    // TODO: Finish login and register process.
 
     this.authService.login(formValues).subscribe({
       next: () => {
         if (this.authService.isLoggedIn()) {
-          this.router.navigateByUrl('home').then();
+          this.router.navigateByUrl('home').then(() => {
+            const acted$ = this.snackBarService.openSnackBar(
+              'Successful login',
+              'Logout'
+            );
+
+            if (acted$) {
+              acted$.subscribe(() => {
+                this.authService.logout();
+                this.router.navigateByUrl('login').then();
+              })
+            }
+          });
         }
       },
       error: err => {

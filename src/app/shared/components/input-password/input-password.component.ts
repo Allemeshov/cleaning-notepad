@@ -1,5 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {
+  FormControl,
+  ReactiveFormsModule,
+  Validators
+} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
@@ -18,26 +22,34 @@ import {NgIf} from "@angular/common";
     MatInputModule,
     NgIf
   ],
-  styleUrls: ['./input-password.component.scss', '../../styles/shared.scss']
+  styleUrls: ['./input-password.component.scss', '../../styles/shared.scss'],
 })
 export class InputPasswordComponent {
 
   @Input()
   passwordControl!: FormControl<string | null>;
 
+  public hide = true;
+
   constructor() {
     if (!this.passwordControl) {
-      this.passwordControl = new FormControl<string>('', [Validators.required, Validators.min(8)]);
+      this.passwordControl = new FormControl<string>('', [
+        Validators.required,
+        Validators.min(8)
+      ]);
     }
   }
 
-  hide = true;
 
   getErrorMessage(): string {
     if (this.passwordControl.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.passwordControl.hasError('minlength') ? 'Your password have at lease 8 symbols' : '';
+    if (this.passwordControl.hasError('minlength')) {
+      return 'Your password have at lease 8 symbols';
+    }
+
+    return '';
   }
 }

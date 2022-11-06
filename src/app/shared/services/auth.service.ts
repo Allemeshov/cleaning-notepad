@@ -38,6 +38,11 @@ export class AuthService extends ApiService {
     localStorage.setItem(this.tokenTitleLC, value);
   }
 
+  clearToken(): void {
+    this._token = '';
+    localStorage.removeItem(this.tokenTitleLC);
+  }
+
   get id(): string {
     if (!this._id) {
       this._id = localStorage.getItem(this.idTitleLC) ?? '';
@@ -49,6 +54,11 @@ export class AuthService extends ApiService {
   set id(value) {
     this._id = value;
     localStorage.setItem(this.idTitleLC, value);
+  }
+
+  clearId(): void {
+    this._id = '';
+    localStorage.removeItem(this.idTitleLC);
   }
 
 
@@ -106,4 +116,8 @@ export class AuthService extends ApiService {
     return !!this.token;
   }
 
+  logout() {
+    this.clearToken();
+    this.clearId();
+  }
 }

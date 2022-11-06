@@ -6,11 +6,23 @@
     <form class="register-form-container" [formGroup]="options">
       <app-input-email [emailControl]="emailControl"></app-input-email>
       <app-input-password [passwordControl]="passwordControl"></app-input-password>
+      <app-input-password-confirmation
+        [passwordConfirmationControl]="passwordConfirmControl"
+        [comparingPassword]="passwordControl.value"
+      ></app-input-password-confirmation>
       <app-input-name [nameControl]="nameControl"></app-input-name>
       <app-input-phone [phoneControl]="phoneControl"></app-input-phone>
     </form>
 
-    <button class="register-btn" mat-raised-button color="primary">Register</button>
+
+    <button class="register-btn"
+            mat-raised-button color="primary"
+            [disabled]="options.invalid"
+            (click)="register()"
+    >
+      Register
+    </button>
+
 
     <app-wave-button [clicked]="loginNavigatedSubject" [backgroundColor]="'#673ab7'">
       Already have account?
