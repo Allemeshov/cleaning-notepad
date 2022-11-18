@@ -34,6 +34,7 @@ export class LoginComponent {
   logInUser(): void {
 
     if (this.options.invalid) {
+      console.log('here')
       alert('Some fields are invalid. Try again.');
       return;
     }
