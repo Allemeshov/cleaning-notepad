@@ -1,0 +1,16 @@
+<div class="container"
+     (mousemove)="removeFocus()"
+     (keydown.escape)="removeFocus()"
+>
+  <div class="workspace-item"
+       *ngFor="let workspace of workspaces"
+       tabindex="0"
+       [style.background-image]="workspace.image ?? generateRandomGradient(workspace)"
+       (click)="openWorkspace(workspace)"
+       (keydown.enter)="openWorkspace(workspace)"
+       (keydown.space)="openWorkspace(workspace)"
+       (focus)="saveFocusedWorkspace(workspace.id, $event)"
+  >
+    <h2 class="title">{{ workspace.title }}</h2>
+  </div>
+</div>
